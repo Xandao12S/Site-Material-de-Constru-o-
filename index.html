@@ -5,330 +5,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>"Sua Marca" - Materiais de Construção</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
-        }
-
-        /* Header */
-        header {
-            background: linear-gradient(135deg, #2c5530, #4a7c59);
-            color: white;
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: #ffd700;
-        }
-
-        .cart-btn {
-            background: #ffd700;
-            color: #2c5530;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: transform 0.3s;
-        }
-
-        .cart-btn:hover {
-            transform: scale(1.05);
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%234a7c59" width="1200" height="600"/><path fill="%232c5530" d="M0 400 Q300 200 600 400 T1200 400 V600 H0 Z"/></svg>');
-            background-size: cover;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            margin-top: 80px;
-        }
-
-        .hero-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .hero-content p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-        }
-
-        .cta-btn {
-            background: #ffd700;
-            color: #2c5530;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-            text-decoration: none;
-        }
-
-        .cta-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255,215,0,0.4);
-        }
-
-        /* Products Section */
-        .products {
-            padding: 5rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #2c5530;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .product-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-        }
-
-        .product-image {
-            height: 250px;
-            background: linear-gradient(45deg, #4a7c59, #6b9b7a);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: white;
-        }
-
-        .product-info {
-            padding: 1.5rem;
-        }
-
-        .product-info h3 {
-            font-size: 1.4rem;
-            margin-bottom: 0.5rem;
-            color: #2c5530;
-        }
-
-        .product-price {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #e74c3c;
-            margin: 1rem 0;
-        }
-
-        .add-to-cart {
-            width: 100%;
-            background: #2c5530;
-            color: white;
-            border: none;
-            padding: 1rem;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .add-to-cart:hover {
-            background: #4a7c59;
-        }
-
-        /* Cart Modal */
-        .cart-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 2000;
-        }
-
-        .cart-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            max-width: 500px;
-            width: 90%;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-
-        .close-cart {
-            float: right;
-            font-size: 2rem;
-            cursor: pointer;
-            color: #999;
-        }
-
-        .cart-total {
-            margin-top: 1rem;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #2c5530;
-        }
-
-        /* Footer */
-        footer {
-            background: #2c5530;
-            color: white;
-            text-align: center;
-            padding: 3rem 2rem;
-        }
-
-        /* Tab buttons */
-        .tab-btn {
-            background: #f0f0f0;
-            border: 2px solid #2c5530;
-            color: #2c5530;
-            padding: 0.5rem 1rem;
-            margin: 0.3rem;
-            border-radius: 25px;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: background 0.3s, color 0.3s;
-        }
-        .tab-btn:hover, .tab-btn.active {
-            background: #2c5530;
-            color: white;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Footer */
-        .footer-fixo {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(135deg, #2c5530, #1a3d20);
-            color: white;
-            padding: 1rem 1.5rem;
-            z-index: 9999;
-            box-shadow: 0 -5px 25px rgba(0,0,0,0.4);
-            border-top: 3px solid #ffd700;
-        }
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 60px;
-        }
-        .footer-logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #ffd700;
-        }
-        .footer-info {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 0.2rem;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Arial', sans-serif; line-height: 1.6; color: #333; }
+        header { background: linear-gradient(135deg, #2c5530, #4a7c59); color: white; padding: 1rem 0; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        .logo { font-size: 1.8rem; font-weight: bold; }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a { color: white; text-decoration: none; transition: color 0.3s; }
+        .nav-links a:hover { color: #ffd700; }
+        .header-actions { display: flex; align-items: center; gap: 0.6rem; }
+        .cart-btn { background: #ffd700; color: #2c5530; padding: 0.5rem 1rem; border-radius: 25px; text-decoration: none; font-weight: bold; transition: transform 0.3s; display: inline-block; cursor: pointer; border: none; }
+        .cart-btn:hover { transform: scale(1.05); }
+        .checkout-btn { background: white; color: #2c5530; padding: 0.5rem 1rem; border-radius: 25px; text-decoration: none; font-weight: bold; transition: transform 0.3s, background 0.3s; border: 2px solid #ffd700; display: inline-block; cursor: pointer; }
+        .checkout-btn:hover { transform: scale(1.05); background: #fff7cc; }
+        .account-tabs { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+        .account-tab-btn { flex: 1; border: 1px solid #2c5530; background: #f5f5f5; color: #2c5530; padding: 0.6rem; border-radius: 8px; cursor: pointer; font-weight: bold; }
+        .account-tab-btn.active { background: #2c5530; color: white; }
+        .account-form { display: none; }
+        .account-form.active { display: block; }
+        .admin-btn { display: none; background: #ffeb3b; color: #2c5530; border: 2px solid #c9b900; padding: 0.5rem 1rem; border-radius: 25px; text-decoration: none; font-weight: bold; cursor: pointer; }
+        .admin-btn.show { display: inline-block; }
+        .admin-list { background: #f9f9f9; border: 1px solid #ddd; border-radius: 8px; padding: 0.8rem; margin-bottom: 1rem; max-height: 220px; overflow-y: auto; }
+        .admin-item { border-bottom: 1px solid #e5e5e5; padding: 0.5rem 0; font-size: 0.92rem; }
+        .admin-item:last-child { border-bottom: none; }
+        .hero { background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%234a7c59" width="1200" height="600"/><path fill="%232c5530" d="M0 400 Q300 200 600 400 T1200 400 V600 H0 Z"/></svg>'); background-size: cover; height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; color: white; margin-top: 80px; }
+        .hero-content h1 { font-size: 3.5rem; margin-bottom: 1rem; }
+        .hero-content p { font-size: 1.3rem; margin-bottom: 2rem; }
+        .cta-btn { background: #ffd700; color: #2c5530; padding: 1rem 2rem; border: none; border-radius: 50px; font-size: 1.2rem; font-weight: bold; cursor: pointer; transition: transform 0.3s, box-shadow 0.3s; text-decoration: none; }
+        .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(255,215,0,0.4); }
+        .products { padding: 5rem 2rem; max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; color: #2c5530; }
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .product-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; }
+        .product-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+        .product-image { height: 250px; background: linear-gradient(45deg, #4a7c59, #6b9b7a); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: white; }
+        .product-info { padding: 1.5rem; }
+        .product-info h3 { font-size: 1.4rem; margin-bottom: 0.5rem; color: #2c5530; }
+        .product-price { font-size: 1.8rem; font-weight: bold; color: #e74c3c; margin: 1rem 0; }
+        .add-to-cart { width: 100%; background: #2c5530; color: white; border: none; padding: 1rem; border-radius: 10px; font-size: 1.1rem; cursor: pointer; transition: background 0.3s; }
+        .add-to-cart:hover { background: #4a7c59; }
+        .cart-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; }
+        .cart-content { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 2rem; border-radius: 15px; max-width: 500px; width: 90%; max-height: 80vh; overflow-y: auto; }
+        .close-cart { float: right; font-size: 2rem; cursor: pointer; color: #999; }
+        .cart-total { margin-top: 1rem; font-size: 1.5rem; font-weight: bold; color: #2c5530; }
+        footer { background: #2c5530; color: white; text-align: center; padding: 3rem 2rem; }
+        .tab-btn { background: #f0f0f0; border: 2px solid #2c5530; color: #2c5530; padding: 0.5rem 1rem; margin: 0.3rem; border-radius: 25px; font-size: 0.95rem; cursor: pointer; transition: background 0.3s, color 0.3s; }
+        .tab-btn:hover, .tab-btn.active { background: #2c5530; color: white; }
+        @media (max-width: 768px) { .nav-links { display: none; } .header-actions { gap: 0.4rem; } .cart-btn, .checkout-btn { padding: 0.45rem 0.7rem; font-size: 0.85rem; } .hero-content h1 { font-size: 2.5rem; } .products-grid { grid-template-columns: 1fr; } }
+        .footer-fixo { position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(135deg, #2c5530, #1a3d20); color: white; padding: 1rem 1.5rem; z-index: 9999; box-shadow: 0 -5px 25px rgba(0,0,0,0.4); border-top: 3px solid #ffd700; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; height: 60px; }
+        .footer-logo { font-size: 1.8rem; font-weight: bold; color: #ffd700; }
+        .footer-info { display: flex; flex-direction: column; align-items: flex-end; gap: 0.2rem; }
         .footer-info p { margin: 0; font-size: 0.95rem; }
         .footer-info a { color: #25D366; text-decoration: none; font-weight: bold; }
         .footer-info a:hover { text-decoration: underline; color: #00ff88; }
         body { padding-bottom: 80px; }
-
-        @media (max-width: 768px) {
-            .footer-content { flex-direction: column; height: auto; padding: 0.5rem 0; gap: 0.3rem; }
-            .footer-info { align-items: center; }
-            body { padding-bottom: 100px; }
-        }
+        @media (max-width: 768px) { .footer-content { flex-direction: column; height: auto; padding: 0.5rem 0; gap: 0.3rem; } .footer-info { align-items: center; } body { padding-bottom: 100px; } }
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <nav>
             <div class="logo">🏗️ "Sua Marca"</div>
             <ul class="nav-links">
                 <li><a href="#home">Início</a></li>
                 <li><a href="#products">Produtos</a></li>
-                <li><a href="#contact">Contato</a></li>
+                <li><a href="https://wa.me/5511976349686" target="_blank">Contato</a></li>
             </ul>
-            <a href="#" class="cart-btn" onclick="openCart()">🛒 Carrinho (0)</a>
+            <div class="header-actions">
+                <a href="#" class="cart-btn" onclick="openCart()">🛒 Carrinho (0)</a>
+                <a href="#" class="checkout-btn" onclick="openAccountModal()">👤 Entrar / Criar Conta</a>
+                <a href="#" id="adminBtn" class="admin-btn" onclick="openAdminModal()">🛠️ Admin</a>
+            </div>
         </nav>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
             <h1>Materiais de Construção de Qualidade</h1>
@@ -337,252 +88,188 @@
         </div>
     </section>
 
+    <section class="products" id="products">
+        <h2 class="section-title">Nossos Produtos</h2>
+        <div class="category-tabs" style="text-align:center;margin-bottom:3rem;">
+            <button class="tab-btn active" onclick="filterProducts('todos')">🛒 Todos</button>
+            <button class="tab-btn" onclick="filterProducts('alvenaria')">🧱 Alvenaria</button>
+            <button class="tab-btn" onclick="filterProducts('ferramentas')">🛠️ Ferramentas</button>
+            <button class="tab-btn" onclick="filterProducts('acabamento')">🎨 Acabamento</button>
+            <button class="tab-btn" onclick="filterProducts('eletrica')">⚡ Elétrica</button>
+            <button class="tab-btn" onclick="filterProducts('hidraulica')">💧 Hidráulica</button>
+        </div>
+        <div class="products-grid" id="productsGrid">
+            <div class="product-card" data-category="alvenaria">
+                <div class="product-image" style="background-image:url('https://www.333obra.com.br/media/catalog/product/1/0/1001.jpeg?width=700&height=700&canvas=700,700&optimize=high&bg-color=255,255,255&fit=bounds');background-size:cover;background-position:center;"></div>
+                <div class="product-info"><h3>Cimento (50kg)</h3><p class="product-price">R$50,00</p><button class="add-to-cart" onclick="addToCart('Cimento (50kg)', 50)">Adicionar</button></div>
+            </div>
+            <div class="product-card" data-category="alvenaria">
+                <div class="product-image" style="background-image:url('https://cdn.awsli.com.br/600x450/1606/1606237/produto/6068945132f7f879ba.jpg');background-size:cover;background-position:center;"></div>
+                <div class="product-info"><h3>Areia (m³)</h3><p class="product-price">R$ 180,00</p><button class="add-to-cart" onclick="addToCart('Areia (m³)', 180.00)">Adicionar</button></div>
+            </div>
+            <div class="product-card" data-category="alvenaria">
+                <div class="product-image" style="background-image:url('https://cedcimentao.com.br/cdn/shop/files/blackcard_11_b5dfa33a-95da-46ab-88bc-70e126d07062_800x.png?v=1691280097');background-size:cover;background-position:center;"></div>
+                <div class="product-info"><h3>Brita (m³)</h3><p class="product-price">R$ 200,00</p><button class="add-to-cart" onclick="addToCart('Brita (m³)', 200.00)">Adicionar</button></div>
+            </div>
+            <div class="product-card" data-category="alvenaria">
+                <div class="product-image" style="background-image:url('https://www.333obra.com.br/media/catalog/product/m/i/milheiro_1_6.jpg?optimize=high&bg-color=255,255,255&fit=bounds&height=265&width=265&canvas=265:265');background-size:cover;background-position:center;"></div>
+                <div class="product-info"><h3>Tijolo cerâmico (milheiro)</h3><p class="product-price">R$ 1.200,00</p><button class="add-to-cart" onclick="addToCart('Tijolo cerâmico (milheiro)', 1200.00)">Adicionar</button></div>
+            </div>
+            <div class="product-card" data-category="alvenaria">
+                <div class="product-image" style="background-image:url('https://cdn.leroymerlin.com.br/products/pallet_de_bloco_de_concreto_vedacao_14x19x39cm_120_unidades_3259530605_627c_220x220.jpg');background-size:cover;background-position:center;"></div>
+                <div class="product-info"><h3>Bloco de concreto (unidade)</h3><p class="product-price">R$ 8,00</p><button class="add-to-cart" onclick="addToCart('Bloco de concreto (unidade)', 8.00)">Adicionar</button></div>
+            </div>
+            <div class="product-card" data-category="ferramentas">
+                <div class="product-image" style="background-image:url('https://daxonart8aj4m.cloudfront.net/Custom/Content/Products/11/69/11694_45095-martelo-unha-de-ao-polido-n-27-com-cabo-de-madeira-momfort_z1_638655620171153454.webp');background-size:cover;background-position:center;"></div>
+                <div class="product-info"><h3>Martelo</h3><p class="product-price">R$ 60,00</p><button class="add-to-cart" onclick="addToCart('Martelo', 60.00)">Adicionar</button></div>
+            </div>
+            <div class="product-card" data-category="ferramentas">
+                <div class="product-image" style="background-image:url('https://cdn.leroymerlin.com.br/products/trena_de_aco_eda_emborrachada_5m_x_19mm_com_ima_na_ponta_1567348011_cc18_600x600.jpg');background-size:cover;background-position:center;"></div>
+                <div class="product-info"><h3>Trena (5m)</h3><p class="product-price">R$ 40,00</p><button class="add-to-cart" onclick="addToCart('Trena (5m)', 40.00)">Adicionar</button></div>
+            </div>
+            <div class="product-card" data-category="ferramentas">
+                <div class="product-image" style="background-image:url('https://ferramentasgerais.vteximg.com.br/arquivos/ids/1075578/1194462_22.jpg?v=63910627522770000');background-size:cover;background-position:center;"></div>
+                <div class="product-info"><h3>Furadeira (Bateria)</h3><p class="product-price">R$ 400,00</p><button class="add-to-cart" onclick="addToCart('Furadeira (Bateria)', 400.00)">Adicionar</button></div>
+            </div>
+            <div class="product-card" data-category="ferramentas">
+                <div class="product-image" style="background-image:url('https://img.irroba.com.br/fit-in/600x600/filters:fill(fff):quality(80)/romaeeei/catalog/api/romaeeei_citelirr/695d6de1b34d3.jpg');background-size:cover;background-position:center;"></div>
+                <div class="product-info"><h3>Serra Manual</h3><p class="product-price">R$ 80,00</p><button class="add-to-cart" onclick="addToCart('Serra Manual', 80.00)">Adicionar</button></div>
+            </div>
+            <div class="product-card" data-category="ferramentas">
+                <div class="product-image" style="background-image:url('https://www.vonder.com.br/estatico/vonder/produto/3535000140.jpg');background-size:cover;background-position:center;"></div>
+                <div class="product-info"><h3>Nível</h3><p class="product-price">R$ 70,00</p><button class="add-to-cart" onclick="addToCart('Nível', 70.00)">Adicionar</button></div>
+            </div>
+            <div class="product-card" data-category="acabamento">
+                <div class="product-image" style="background-image:url('https://www.tintasdarka.com.br/estatico/darka/images/temp/452_tintalatexpvapremiumfoscopalha18lsuvinil_1.png?v=1740588193');background-size:cover;background-position:center;"></div>
+                <div class="product-info"><h3>Tinta Látex (18L)</h3><p class="product-price">R$ 350,00</p><button class="add-to-cart" onclick="addToCart('Tinta Látex (18L)', 350.00)">Adicionar</button></div>
+            </div>
+            <div class="product-card" data-category="acabamento">
+                <div class="product-image" style="background-image:url('https://casatoni.vteximg.com.br/arquivos/ids/160872-1000-1000/Massa-Corrida-PVA-Suvinil-25kg.jpg?v=637279300635970000');background-size:cover;background-position:center;"></div>
+                <div class="product-info"><h3>Massa Corrida (25kg)</h3><p class="product-price">R$ 120,00</p><button class="add-to-cart" onclick="addToCart('Massa Corrida (25kg)', 120.00)">Adicionar</button></div>
+            </div>
+            <div class="product-card" data-category="acabamento">
+                <div class="product-image" style="background-image:url('https://telhanorte.vtexassets.com/arquivos/ids/1322559/1475789-Image-3.jpg?v=639074638840470000');background-size:cover;background-position:center;"></div>
+                <div class="product-info"><h3>Revestimento Cerâmico (m²)</h3><p class="product-price">R$ 100,00</p><button class="add-to-cart" onclick="addToCart('Revestimento Cerâmico (m²)', 100.00)">Adicionar</button></div>
+            </div>
+            <div class="product-card" data-category="acabamento">
+                <div class="product-image" style="background-image:url('https://images.tcdn.com.br/img/img_prod/1330446/porcelanato_80x80_essence_cinza_polido_a_260_inces_2_20251007132206_398d353c059c.jpg');background-size:cover;background-position:center;"></div>
+                <div class="product-info"><h3>Piso Porcelanato (m²)</h3><p class="product-price">R$ 200,00</p><button class="add-to-cart" onclick="addToCart('Piso Porcelanato (m²)', 200.00)">Adicionar</button></div>
+            </div>
+            <div class="product-card" data-category="eletrica">
+                <div class="product-image" style="background-image:url('https://images.tcdn.com.br/img/img_prod/559367/fio_cabo_flexivel_750v_1_5mm2_rolo_de_100m_sil_corfio_331_6_c50d89c05dd867bca2b91b0fd1bf1126.jpg');background-size:cover;background-position:center;"></div>
+                <div class="product-info"><h3>Fio Flexível (100m)</h3><p class="product-price">R$ 500,00</p><button class="add-to-cart" onclick="addToCart('Fio Flexível (100m)', 500.00)">Adicionar</button></div>
+            </div>
+            <div class="product-card" data-category="eletrica">
+                <div class="product-image" style="background-image:url('https://normatel.fbitsstatic.net/img/p/conjunto-tomada-dupla-10a-4x2-canoa-romazi-89449/276653.jpg?w=770&h=770&v=202504160846');background-size:cover;background-position:center;"></div>
+                <div class="product-info"><h3>Tomada</h3><p class="product-price">R$ 20,00</p><button class="add-to-cart" onclick="addToCart('Tomada', 20.00)">Adicionar</button></div>
+            </div>
 
-    <!-- Products Section -->
-<section class="products" id="products">
-    <h2 class="section-title">Nossos Produtos</h2>
-    
-    <!-- FILTROS DE CATEGORIA -->
-    <div class="category-tabs" style="text-align: center; margin-bottom: 3rem;">
-        <button class="tab-btn active" onclick="filterProducts('todos')">🛒 Todos (18)</button>
-        <button class="tab-btn" onclick="filterProducts('alvenaria')">🧱 Alvenaria (5)</button>
-        <button class="tab-btn" onclick="filterProducts('ferramentas')">🛠️ Ferramentas (5)</button>
-        <button class="tab-btn" onclick="filterProducts('acabamento')">🎨 Acabamento (4)</button>
-        <button class="tab-btn" onclick="filterProducts('eletrica')">⚡ Elétrica (4)</button>
-        <button class="tab-btn" onclick="filterProducts('hidraulica')">💧 Hidráulica (4)</button>
-    </div>
-
-    <div class="products-grid" id="productsGrid">
-
-        <!-- 🧱 Materiais Básicos -->
-        <div class="product-card" data-category="alvenaria">
-            <div class="product-image" style="background-image: url('https://www.333obra.com.br/media/catalog/product/1/0/1001.jpeg?width=700&height=700&canvas=700,700&optimize=high&bg-color=255,255,255&fit=bounds'); background-size: cover; background-position: center;"></div>
-            <div class="product-info">
-                <h3>Cimento (50kg)</h3>
-                <p class="product-price">R$50,00</p>
-                <button class="add-to-cart" onclick="addToCart('Cimento (50kg)', 50)">Adicionar</button>
+            <div class="product-card" data-category="eletrica">
+                <div class="product-image" style="background-image:url('https://images.tcdn.com.br/img/img_prod/625353/3_pcs_conjunto_interruptor_simples_10a_250v_vertical_slim_ilm0062_6047_1_20190424141708.jpg');background-size:cover;background-position:center;"></div>
+                <div class="product-info"><h3>Interruptor</h3><p class="product-price">R$ 25,00</p><button class="add-to-cart" onclick="addToCart('Interruptor', 25.00)">Adicionar</button></div>
+            </div>
+            <div class="product-card" data-category="eletrica">
+                <div class="product-image" style="background-image:url('https://dcu3z7fnvhgqn.cloudfront.net/Custom/Content/Products/17/00/17009_lampada-led-bulbo-e27-7w-6500k-600lm-p9234560_m48_639106316417881056.webp');background-size:cover;background-position:center;"></div>
+                <div class="product-info"><h3>Lâmpada de LED</h3><p class="product-price">R$ 40,00</p><button class="add-to-cart" onclick="addToCart('Lâmpada de LED', 40.00)">Adicionar</button></div>
+            </div>
+            <div class="product-card" data-category="hidraulica">
+                <div class="product-image" style="background-image:url('https://http2.mlstatic.com/D_NQ_NP_943263-MLB78889845815_092024-O.webp');background-size:cover;background-position:center;"></div>
+                <div class="product-info"><h3>Registro PVC (6m)</h3><p class="product-price">R$ 120,00</p><button class="add-to-cart" onclick="addToCart('Registro PVC', 120.00)">Adicionar</button></div>
+            </div>
+            <div class="product-card" data-category="hidraulica">
+                <div class="product-image" style="background-image:url('https://cdn.awsli.com.br/2500x2500/2243/2243783/produto/138493420/torneira-longa-cromada-c32--05--f0u245ylpf.jpg');;background-size:cover;background-position:center;"></div>
+                <div class="product-info"><h3>Torneira</h3><p class="product-price">R$ 150,00</p><button class="add-to-cart" onclick="addToCart('Torneira', 150.00)">Adicionar</button></div>
+            </div>
+            <div class="product-card" data-category="hidraulica">
+                <div class="product-image" style="background-image:url('https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcS48h9q7a8ytSyzF3tlI6e8xu_4QqKEkS8til7iWLPEKt8pTj2cP6j5faeNaZdWTK-8gpylMq1-raY8Xve3qF-nNF3inxZhl4JDgYuM1Q905qgWO97a8CdSKhfCJm3p5IjrfrJpuoKVfj0&usqp=CAc');background-size:cover;background-position:center;"></div>
+                <div class="product-info"><h3>Caixa d'Água 1000L</h3><p class="product-price">R$ 900,00</p><button class="add-to-cart" onclick="addToCart('Caixa d´Água 1000L', 900.00)">Adicionar</button></div>
+            </div>
+            <div class="product-card" data-category="hidraulica">
+                <div class="product-image" style="background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTN5kB80J-acPhvu6myl4uEFRkMlLjpBVJHRg&s');background-size:cover;background-position:center;"></div>
+                <div class="product-info"><h3>Chuveiro Elétrico</h3><p class="product-price">R$ 40,00</p><button class="add-to-cart" onclick="addToCart('Chuveiro Elétrico', 40.00)">Adicionar</button></div>
             </div>
         </div>
-
-        <div class="product-card" data-category="alvenaria">
-            <div class="product-image" style="background-image: url('https://cdn.awsli.com.br/600x450/1606/1606237/produto/6068945132f7f879ba.jpg'); background-size: cover; background-position: center;"></div>
-            <div class="product-info">
-                <h3>Areia (m³)</h3>
-                <p class="product-price">R$ 180,00</p>
-                <button class="add-to-cart" onclick="addToCart('Areia (m³)', 180.00)">Adicionar</button>
-            </div>
-        </div>
-
-                <div class="product-card" data-category="alvenaria">
-            <div class="product-image" style="background-image: url('https://cedcimentao.com.br/cdn/shop/files/blackcard_11_b5dfa33a-95da-46ab-88bc-70e126d07062_800x.png?v=1691280097'); background-size: cover; background-position: center;"></div>
-            <div class="product-info">
-                <h3>Brita (m³)</h3>
-                <p class="product-price">R$ 200,00</p>
-                <button class="add-to-cart" onclick="addToCart('Brita (m³)', 200.00)">Adicionar</button>
-            </div>
-        </div>
-                <div class="product-card" data-category="alvenaria">
-            <div class="product-image" style="background-image: url('https://www.333obra.com.br/media/catalog/product/m/i/milheiro_1_6.jpg?optimize=high&bg-color=255,255,255&fit=bounds&height=265&width=265&canvas=265:265'); background-size: cover; background-position: center;"></div>
-            <div class="product-info">
-                <h3>Tijolo cerâmico (milheiro)</h3>
-                <p class="product-price">R$ 1.200,00</p>
-                <button class="add-to-cart" onclick="addToCart('Tijolo cerâmico (milheiro)', 1200.00)">Adicionar</button>
-            </div>
-        </div>
-                <div class="product-card" data-category="alvenaria">
-            <div class="product-image" style="background-image: url('https://cdn.leroymerlin.com.br/products/pallet_de_bloco_de_concreto_vedacao_14x19x39cm_120_unidades_3259530605_627c_220x220.jpg'); background-size: cover; background-position: center;"></div>
-            <div class="product-info">
-                <h3>Bloco de concreto (unidade)</h3>
-                <p class="product-price">R$ 8,00</p>
-                <button class="add-to-cart" onclick="addToCart('Bloco de concreto (unidade)', 8.00)">Adicionar</button>
-            </div>
-        </div>
-
-
-                <!-- 🛠️ Ferramentas -->
-        <div class="product-card" data-category="ferramentas">
-            <div class="product-image" style="background-image: url('https://daxonart8aj4m.cloudfront.net/Custom/Content/Products/11/69/11694_45095-martelo-unha-de-ao-polido-n-27-com-cabo-de-madeira-momfort_z1_638655620171153454.webp'); background-size: cover; background-position: center;"></div>
-            <div class="product-info">
-                <h3>Martelo</h3>
-                <p class="product-price">R$ 60,00
-                </p>
-                <button class="add-to-cart" onclick="addToCart('Martelo', 60.00)">Adicionar</button>
-            </div>
-        </div>
-
-        <div class="product-card" data-category="ferramentas">
-            <div class="product-image" style="background-image: url('https://cdn.leroymerlin.com.br/products/trena_de_aco_eda_emborrachada_5m_x_19mm_com_ima_na_ponta_1567348011_cc18_600x600.jpg'); background-size: cover; background-position: center;"></div>
-            <div class="product-info">
-                <h3>Trena (5m)</h3>
-                <p class="product-price">R$ 40,00
-                </p>
-                <button class="add-to-cart" onclick="addToCart('Trena (5m)', 40.00)">Adicionar</button>
-            </div>
-        </div>
-   
-        <div class="product-card" data-category="ferramentas">
-            <div class="product-image" style="background-image: url('https://ferramentasgerais.vteximg.com.br/arquivos/ids/1075578/1194462_22.jpg?v=639106275227700000'); background-size: cover; background-position: center;"></div>
-            <div class="product-info">
-                <h3>Furadeira (Bateria)</h3>
-                <p class="product-price">R$ 400,00
-                </p>
-                <button class="add-to-cart" onclick="addToCart('Furadeira (Bateria)', 400.00)">Adicionar</button>
-            </div>
-        </div>
-
-        <div class="product-card" data-category="ferramentas">
-            <div class="product-image" style="background-image: url('https://img.irroba.com.br/fit-in/600x600/filters:fill(fff):quality(80)/romaeeei/catalog/api/romaeeei_citelirr/695d6de1b34d3.jpg'); background-size: cover; background-position: center;"></div>
-            <div class="product-info">
-                <h3>Serra Manual</h3>
-                <p class="product-price">R$ 80,00
-                </p>
-                <button class="add-to-cart" onclick="addToCart('Serra Manual', 80.00)">Adicionar</button>
-            </div>
-        </div>
-
-        <div class="product-card" data-category="ferramentas">
-            <div class="product-image" style="background-image: url('https://www.vonder.com.br/estatico/vonder/produto/3535000140.jpg'); background-size: cover; background-position: center;"></div>
-            <div class="product-info">
-                <h3>Nível</h3>
-                <p class="product-price">R$ 70,00
-                </p>
-                <button class="add-to-cart" onclick="addToCart('Nível', 70.00)">Adicionar</button>
-             </div>
-        </div>
-
-
-        <!-- 🎨 ACABAMENTO -->
-        <div class="product-card" data-category="acabamento">
-            <div class="product-image" style="background-image: url('data:image/jpeg;base64,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'); background-size: cover; background-position: center;"></div>
-            <div class="product-info">
-                <h3>Tinta Látex (18L)</h3>
-                <p class="product-price">R$ 350,00</p>
-                <button class="add-to-cart" onclick="addToCart('Tinta Látex (18L)', 350.00)">Adicionar</button>
-            </div>
-        </div>
-
-        <div class="product-card" data-category="acabamento">
-            <div class="product-image" style="background-image: url('data:image/png;base64,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'); background-size: cover; background-position: center;"></div>
-            <div class="product-info">
-                <h3>Massa Corrida (25kg)</h3>
-                <p class="product-price">R$ 120,00</p>
-                <button class="add-to-cart" onclick="addToCart('Massa Corrida (25kg)', 120.00)">Adicionar</button>
-            </div>
-        </div>
-
-        <div class="product-card" data-category="acabamento">
-            <div class="product-image" style="background-image: url('https://telhanorte.vtexassets.com/arquivos/ids/1322559/1475789-Image-3.jpg?v=639074638840470000'); background-size: cover; background-position: center;"></div>
-            <div class="product-info">
-                <h3>Revestimento Cerâmico (m²)</h3>
-                <p class="product-price">R$ 100,00</p>
-                <button class="add-to-cart" onclick="addToCart('Revestimento Cerâmico (m²)', 100.00)">Adicionar</button>
-            </div>
-        </div>
-        <div class="product-card" data-category="acabamento">
-            <div class="product-image" style="background-image: url('https://images.tcdn.com.br/img/img_prod/1330446/porcelanato_80x80_essence_cinza_polido_a_260_inces_2_20251007132206_398d353c059c.jpg'); background-size: cover; background-position: center;"></div>
-            <div class="product-info">
-                <h3>Piso Porcelanato (m²)</h3>
-                <p class="product-price">R$ 200,00</p>
-                <button class="add-to-cart" onclick="addToCart('Piso Porcelanato (m²)', 200.00)">Adicionar</button>
-            </div>
-        </div>
-
-        <!-- ⚡ ELÉTRICA -->
-        <div class="product-card" data-category="eletrica">
-            <div class="product-image" style="background-image: url('https://images.tcdn.com.br/img/img_prod/559367/fio_cabo_flexivel_750v_1_5mm2_rolo_de_100m_sil_corfio_331_6_c50d89c05dd867bca2b91b0fd1bf1126.jpg'); background-size: cover; background-position: center;"></div>
-            <div class="product-info">
-                <h3>Fio Flexível (100m)</h3>
-                <p class="product-price">R$ 500,00</p>
-                <button class="add-to-cart" onclick="addToCart('Fio Flexível (100m)', 500.00)">Adicionar</button>
-            </div>
-        </div>
-
-        <div class="product-card" data-category="eletrica">
-            <div class="product-image" style="background-image: url('https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQlzxwmaZ0zl8XCFCsMyFD675CVchJjxFuDWtK2K0lCZNn0oeKi7sS0fBXxSRARQvSFHPHYvqOPl8GQgLbkY8oOJFTgkPMyn-VHG9x2Gr9vKFG1MZgh8aDq0N_QGf1yCF-mYeXOzw&usqp=CAc'); background-size: cover; background-position: center;"></div>
-            <div class="product-info">
-                <h3>Tomada</h3>
-                <p class="product-price">R$ 20,00</p>
-                <button class="add-to-cart" onclick="addToCart('Tomada', 20.00)">Adicionar</button>
-            </div>
-        </div>
-
-                <div class="product-card" data-category="eletrica">
-            <div class="product-image" style="background-image: url('data:image/jpeg;base64,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'); background-size: cover; background-position: center;"></div>
-            <div class="product-info">
-                <h3>Interruptor</h3>
-                <p class="product-price">R$ 25,00</p>
-                <button class="add-to-cart" onclick="addToCart('Interruptor', 25.00)">Adicionar</button>
-            </div>
-        </div>
-
-                <div class="product-card" data-category="eletrica">
-            <div class="product-image" style="background-image: url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxAQEg4OEBANDxAOEA4NEA8QDRANDRANFREWFhURFRUYHCgsGBolGxMWITMhJSsrMC4uFx8zODMsNygtMCsBCgoKDQwNDg0ODisZFRkrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrK//AABEIAOEA4QMBIgACEQEDEQH/xAAbAAEAAgMBAQAAAAAAAAAAAAAAAwQBAgcFBv/EADoQAQACAQIDBQQGCAcAAAAAAAABAhEDBBIhMQVBUXGRYYGhsQYTFCKS0SMyUmJygsHwB0NTVHSj8f/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDuIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAj1dWK+fdCre826+ncCxbcVj2+TT7V+78UACeNz+78W9dxHfmFUBfic9GVCtpjnE4WtLWzynlPzBKAAAAAAAAAAAAAAAAAAAA01dThjPpHtbqerfMz4RygGk8+c9ZGYhmYBoM4AYZMGAYZZiGZgFjR1M8p6x8falUqWxMT/eF2JAAAAAAAAAAAAAAAAAABrq2xEz7PipQtbn9X3x81aIBvWGLtqtLgwAAABCXGYRJq9AQrW3nl5claU217/ME4AAAAAAAAAAAAAAAAAItzH3Z93zV4W71zEx4xhUqDbLEswSDXDGGzAMYZwADaJYZBiUu16T5/0Qys6NcRHqCQAAAAAAAAAAAAAAAAABV3FcTnun4StMXrExMT0kFSJZ9fRpTMTMT1icLNZBDPlPpLGPZPotMgqY9k+hifCfRbYBWx7J9GJn+8LMoNSQY068U47o5z+S200qYjHr5twAAAAAAAAAAAAAAAAAAAAVt1XExb+Wf6N9Jtr1zWfLPpzR6EgngAAAGt0WlGbZ8Pmk1GNvHLPjMglAAAAAAAAAAAAAAAAAAAAAAVNv4eHJbVdPrb+KfmCxllT7R29tSKYituG3FNLzMVtGMdY8FevZurwVrGtNMR0pFpiJ+/yicxyjjj8EA9QeZPZur/ALrWjl4RM5x7ZWtltrafHxaltTi4cRPFiuIxyzaeoJdaeTfSjlHlCPcdE0AAAAAAAAAAAAAAAAAAAAAAAKevaNOeK0xFbT1mcc/BceT9JtK1tGeCJmYtFuXhiefxBcpvdOel6T/PX80kbmn7VfxV/N5PZWpX7LWnFE6ldO0WrE5tFsd/tcd7U3vaddS9ftMUitrRXO822laI4pmOKJvHF1xz7oB3b7Zp/t0/HX82Pt2l/qaf46/m4DHaXaV5572szM8+Df7Wse6tb8vc7N9HtzNNnXU3Fpm0xNrTX7+ImMYrw5z8QetTWrqTisxaIxmYnMRC28f6OaOK3vMxM3npiYmuJnrE9Or2AAAAAAAAAAAAAAAAAAAAAAAFTtWf0d/vcPd48X7vvW1TtSJ+qviIty557o75j2g+d+jkxM7jhmLWifvVtwTFZx3RPSPe5b9INxWNxrxbe7iLcc509LV3mnSvsiNKto9HT+xrxH1samLV58ERNZtEeExMYhz3tPs/e21tWdLa7amnN7cFrWvN5r4z9XqR/QHzl93oR+tr7+Y/5fafytoO0bPVrfY6PDqfaM0pw1z9Z5cUVis8va5dfsztCOcX2lP4rb+sR/3S6lpTedlp11aVr92kWmk31a28uOK9Qe32JE/V84jP7ccuP/zo9F53YVYjT5RNeeJp0rXl3e6YeiAAAAAAAAAAAAAAAAAAAAAAAj3GjF6zS3SfDr4wkAfLW2urtLWmlZv9bmeOs6vPzrWcRPufIb/6A7Tcampr61N1a+pab2zr60RmfCO51e0ZQX1bxn9FNo7ppeuZj2xbGAcpr/hh2Z1na6lvPX3E/Kz7LszY3imnttPSrTSpXhrx6eeGkcv1rRMzPxfSV17z/lWr/HekRj+WZT4BHtdCNOsUju7/ABnxSgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//Z'); background-size: cover; background-position: center;"></div>
-            <div class="product-info">
-                <h3>Lâmpada de LED</h3>
-                <p class="product-price">R$ 40,00</p>
-                <button class="add-to-cart" onclick="addToCart('Lâmpada de LED', 40.00)">Adicionar</button>
-            </div>
-        </div>
-
-
-        <!-- 💧 HIDRÁULICA -->
-        <div class="product-card" data-category="hidraulica">
-            <div class="product-image" style="background-image: url('data:image/jpeg;base64,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'); background-size: cover; background-position: center;"></div>
-            <div class="product-info">
-                <h3>Registro PVC (6m)"</h3>
-                <p class="product-price">R$ 120,00</p>
-                <button class="add-to-cart" onclick="addToCart('Registro PVC', 120.00)">Adicionar</button>
-            </div>
-        </div>
-
-        <div class="product-card" data-category="hidraulica">
-            <div class="product-image" style="background-image: url('data:image/jpeg;base64,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'); background-size: cover; background-position: center;"></div>
-            <div class="product-info">
-                <h3>Torneira</h3>
-                <p class="product-price">R$ 150,00</p>
-                <button class="add-to-cart" onclick="addToCart('Torneira', 150.00)">Adicionar</button>
-            </div>
-        </div>
-
-        <div class="product-card" data-category="hidraulica">
-            <div class="product-image" style="background-image: url('https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcS48h9q7a8ytSyzF3tlI6e8xu_4QqKEkS8til7iWLPEKt8pTj2cP6j5faeNaZdWTK-8gpylMq1-raY8Xve3qF-nNF3inxZhl4JDgYuM1Q905qgWO97a8CdSKhfCJm3p5IjrfrJpuoKVfj0&usqp=CAc'); background-size: cover; background-position: center;"></div>
-            <div class="product-info">
-                <h3>Caixa d'Água 1000L</h3>
-                <p class="product-price">R$ 900,00</p>
-                <button class="add-to-cart" onclick="addToCart('Caixa d´Água 1000L', 900.00)">Adicionar</button>
-            </div>
-        </div>
-
-        <div class="product-card" data-category="hidraulica">
-            <div class="product-image" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTN5kB80J-acPhvu6myl4uEFRkMlLjpBVJHRg&s'); background-size: cover; background-position: center;"></div>
-            <div class="product-info">
-                <h3>Chuveiro Elétrico</h3>
-                <p class="product-price">R$ 40,00</p>
-                <button class="add-to-cart" onclick="addToCart('Chuveiro Elétrico', 40.00)">Adicionar</button>
-            </div>
-        </div>
-
-
-    </div><!-- fim products-grid -->
-</section><!-- fim products section -->
+    </section>
 
     <!-- Cart Modal -->
-    <div class="cart-modal" id="cartModal">
+    <div id="cartModal" class="cart-modal">
         <div class="cart-content">
-            <span class="close-cart" onclick="closeCart()">&times;</span>
-            <h2>🛒 Seu Carrinho</h2>
+            <span class="close-cart" onclick="closeCart()">×</span>
+            <h2 style="color:#2c5530;margin-bottom:1rem;">🛒 Seu Carrinho</h2>
             <div id="cartItems"></div>
-            <div class="cart-total" id="cartTotal">Total: R$ 0,00</div>
-            <button class="cta-btn" style="width: 100%; margin-top: 1rem;" onclick="checkout()">Finalizar Compra</button>
+            <div id="cartTotal" class="cart-total">Total: R$ 0,00</div>
+            <button class="add-to-cart" style="margin-top:1rem;" onclick="openCheckout()">Finalizar Pedido</button>
         </div>
     </div>
 
-    <!-- Footer -->
+    <!-- Account Modal -->
+    <div id="accountModal" class="cart-modal">
+        <div class="cart-content">
+            <span class="close-cart" onclick="closeAccountModal()">×</span>
+            <h2 style="color:#2c5530;margin-bottom:1rem;">👤 Minha Conta</h2>
+            <div class="account-tabs">
+                <button type="button" class="account-tab-btn active" onclick="switchAccountTab('login')">Entrar</button>
+                <button type="button" class="account-tab-btn" onclick="switchAccountTab('register')">Criar conta</button>
+            </div>
+            <form id="loginForm" class="account-form active" onsubmit="loginAccount(event)">
+                <input id="loginEmail" type="email" placeholder="E-mail" required style="width:100%;padding:0.8rem;margin:0.4rem 0;border:1px solid #ccc;border-radius:8px;">
+                <input id="loginSenha" type="password" placeholder="Senha" required style="width:100%;padding:0.8rem;margin:0.4rem 0;border:1px solid #ccc;border-radius:8px;">
+                <button type="submit" class="add-to-cart" style="margin-top:1rem;">Entrar</button>
+            </form>
+            <form id="registerForm" class="account-form" onsubmit="registerAccount(event)">
+                <input id="cadNome" type="text" placeholder="Nome completo" required style="width:100%;padding:0.8rem;margin:0.4rem 0;border:1px solid #ccc;border-radius:8px;">
+                <input id="cadTelefone" type="text" placeholder="Telefone" required style="width:100%;padding:0.8rem;margin:0.4rem 0;border:1px solid #ccc;border-radius:8px;">
+                <input id="cadEmail" type="email" placeholder="E-mail" required style="width:100%;padding:0.8rem;margin:0.4rem 0;border:1px solid #ccc;border-radius:8px;">
+                <input id="cadSenha" type="password" placeholder="Senha" required style="width:100%;padding:0.8rem;margin:0.4rem 0;border:1px solid #ccc;border-radius:8px;">
+                <input id="cadEndereco" type="text" placeholder="Endereço completo" required style="width:100%;padding:0.8rem;margin:0.4rem 0;border:1px solid #ccc;border-radius:8px;">
+                <input id="cadBairro" type="text" placeholder="Bairro" required style="width:100%;padding:0.8rem;margin:0.4rem 0;border:1px solid #ccc;border-radius:8px;">
+                <input id="cadCidade" type="text" placeholder="Cidade" required style="width:100%;padding:0.8rem;margin:0.4rem 0;border:1px solid #ccc;border-radius:8px;">
+                <input id="cadCep" type="text" placeholder="CEP" required style="width:100%;padding:0.8rem;margin:0.4rem 0;border:1px solid #ccc;border-radius:8px;">
+                <button type="submit" class="add-to-cart" style="margin-top:1rem;">Criar conta</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Modal (só pede senha) -->
+    <div id="adminModal" class="cart-modal">
+        <div class="cart-content">
+            <span class="close-cart" onclick="closeAdminModal()">×</span>
+            <h2 style="color:#2c5530;margin-bottom:1rem;">🛠️ Painel Administrativo</h2>
+            <p style="margin-bottom:0.8rem;">Acesso restrito ao administrador.</p>
+            <input id="adminPassword" type="password" placeholder="Senha do admin" style="width:100%;padding:0.8rem;border:1px solid #ccc;border-radius:8px;">
+            <button class="add-to-cart" style="margin-top:0.6rem;" onclick="unlockAdminPanel()">Entrar no painel</button>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div id="checkoutModal" class="cart-modal">
+        <div class="cart-content">
+            <span class="close-cart" onclick="closeCheckout()">×</span>
+            <h2 style="color:#2c5530;margin-bottom:1rem;">📋 Finalizar Pedido</h2>
+            <form id="checkoutForm" onsubmit="submitOrder(event)">
+                <input id="nome" type="text" placeholder="Nome completo" required style="width:100%;padding:0.8rem;margin:0.4rem 0;border:1px solid #ccc;border-radius:8px;">
+                <input id="telefone" type="text" placeholder="Telefone" required style="width:100%;padding:0.8rem;margin:0.4rem 0;border:1px solid #ccc;border-radius:8px;">
+                <input id="endereco" type="text" placeholder="Endereço completo" required style="width:100%;padding:0.8rem;margin:0.4rem 0;border:1px solid #ccc;border-radius:8px;">
+                <input id="bairro" type="text" placeholder="Bairro" required style="width:100%;padding:0.8rem;margin:0.4rem 0;border:1px solid #ccc;border-radius:8px;">
+                <input id="cidade" type="text" placeholder="Cidade" required style="width:100%;padding:0.8rem;margin:0.4rem 0;border:1px solid #ccc;border-radius:8px;">
+                <input id="cep" type="text" placeholder="CEP" required style="width:100%;padding:0.8rem;margin:0.4rem 0;border:1px solid #ccc;border-radius:8px;">
+                <select id="pagamento" onchange="toggleTrocoField()" required style="width:100%;padding:0.8rem;margin:0.4rem 0;border:1px solid #ccc;border-radius:8px;">
+                    <option value="">Selecione o meio de pagamento</option>
+                    <option value="Pix">Pix</option>
+                    <option value="Cartão">Cartão</option>
+                    <option value="Dinheiro">Dinheiro</option>
+                </select>
+                <input id="troco" type="text" placeholder="Troco para quanto?" style="display:none;width:100%;padding:0.8rem;margin:0.4rem 0;border:1px solid #ccc;border-radius:8px;">
+                <button type="submit" class="add-to-cart" style="margin-top:1rem;">Confirmar Pedido</button>
+            </form>
+        </div>
+    </div>
+
     <footer id="contact" class="footer-fixo">
         <div class="footer-content">
             <div class="footer-logo">🏗️ "Sua Marca"</div>
             <div class="footer-info">
-                <p>&copy; 2002 "Sua Marca". Todos os direitos reservados para Alexandre Alencar.</p>
+                <p>© 2002 "Sua Marca". Todos os direitos reservados para Alexandre Alencar.</p>
                 <p>📞 (11) 97634-9686 | 📧 contato@suamarca.com.br</p>
                 <p>📞 <a href="https://wa.me/5511976349686" target="_blank">WhatsApp: (11) 97634-9686</a></p>
             </div>
@@ -592,17 +279,15 @@
     <script>
         let cart = [];
         let cartCount = 0;
+        let currentUser = null;
+        const ADMIN_EMAIL = 'alexandreale@gmail.com';
+        const ADMIN_PASSWORD = 'site1206';
 
         function addToCart(name, price) {
             const existing = cart.find(item => item.name === name);
-            if (existing) {
-                existing.quantity++;
-            } else {
-                cart.push({ name, price, quantity: 1 });
-            }
+            if (existing) { existing.quantity++; } else { cart.push({ name, price, quantity: 1 }); }
             cartCount++;
             updateCartDisplay();
-            openCart();
         }
 
         function removeFromCart(index) {
@@ -637,14 +322,8 @@
             totalEl.textContent = 'Total: R$ ' + total.toFixed(2).replace('.',',');
         }
 
-        function openCart() {
-            document.getElementById('cartModal').style.display = 'block';
-            displayCartItems();
-        }
-
-        function closeCart() {
-            document.getElementById('cartModal').style.display = 'none';
-        }
+        function openCart() { document.getElementById('cartModal').style.display = 'block'; displayCartItems(); }
+        function closeCart() { document.getElementById('cartModal').style.display = 'none'; }
 
         function filterProducts(category) {
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
@@ -654,33 +333,337 @@
             });
         }
 
-        function checkout() {
-            if (cart.length === 0) {
-                alert('Seu carrinho está vazio!');
-                return;
+        function openAccountModal() { document.getElementById('accountModal').style.display = 'block'; }
+        function closeAccountModal() { document.getElementById('accountModal').style.display = 'none'; }
+
+        function switchAccountTab(tab) {
+            document.querySelectorAll('.account-tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.account-form').forEach(form => form.classList.remove('active'));
+            if (tab === 'login') {
+                document.querySelectorAll('.account-tab-btn')[0].classList.add('active');
+                document.getElementById('loginForm').classList.add('active');
+            } else {
+                document.querySelectorAll('.account-tab-btn')[1].classList.add('active');
+                document.getElementById('registerForm').classList.add('active');
             }
-            let mensagem = "🛒 *PEDIDO 'Sua Marca'*\n\n";
-            let total = 0;
-            cart.forEach(item => {
-                const valorItem = (item.price * item.quantity).toFixed(2);
-                mensagem += `• ${item.name} x${item.quantity}: R$ ${valorItem}\n`;
-                total += item.price * item.quantity;
+        }
+
+        function registerAccount(event) {
+            event.preventDefault();
+            const user = {
+                nome: document.getElementById('cadNome').value.trim(),
+                telefone: document.getElementById('cadTelefone').value.trim(),
+                email: document.getElementById('cadEmail').value.trim().toLowerCase(),
+                senha: document.getElementById('cadSenha').value,
+                endereco: document.getElementById('cadEndereco').value.trim(),
+                bairro: document.getElementById('cadBairro').value.trim(),
+                cidade: document.getElementById('cadCidade').value.trim(),
+                cep: document.getElementById('cadCep').value.trim()
+            };
+            localStorage.setItem('clienteConta', JSON.stringify(user));
+            currentUser = user;
+            const contas = JSON.parse(localStorage.getItem('contasCadastradas') || '[]');
+            const idx = contas.findIndex(c => c.email === user.email);
+            if (idx >= 0) contas[idx] = user; else contas.push(user);
+            localStorage.setItem('contasCadastradas', JSON.stringify(contas));
+            if (user.email === ADMIN_EMAIL) showAdminButton();
+            alert('Conta criada com sucesso!');
+            closeAccountModal();
+            autofillCheckoutFromAccount();
+        }
+
+        function loginAccount(event) {
+            event.preventDefault();
+            const saved = JSON.parse(localStorage.getItem('clienteConta') || 'null');
+            const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+            const senha = document.getElementById('loginSenha').value;
+            if (!saved || saved.email !== email || saved.senha !== senha) { alert('E-mail ou senha inválidos.'); return; }
+            currentUser = saved;
+            if (saved.email === ADMIN_EMAIL) showAdminButton(); else hideAdminButton();
+            alert('Login realizado com sucesso!');
+            closeAccountModal();
+            autofillCheckoutFromAccount();
+        }
+
+        function autofillCheckoutFromAccount() {
+            const user = currentUser || JSON.parse(localStorage.getItem('clienteConta') || 'null');
+            if (!user) return;
+            document.getElementById('nome').value = user.nome || '';
+            document.getElementById('telefone').value = user.telefone || '';
+            document.getElementById('endereco').value = user.endereco || '';
+            document.getElementById('bairro').value = user.bairro || '';
+            document.getElementById('cidade').value = user.cidade || '';
+            document.getElementById('cep').value = user.cep || '';
+        }
+
+        function showAdminButton() { document.getElementById('adminBtn').classList.add('show'); }
+        function hideAdminButton() { document.getElementById('adminBtn').classList.remove('show'); }
+
+        function openAdminModal() {
+            document.getElementById('adminPassword').value = '';
+            document.getElementById('adminModal').style.display = 'block';
+        }
+
+        function closeAdminModal() { document.getElementById('adminModal').style.display = 'none'; }
+
+        function unlockAdminPanel() {
+            const pass = document.getElementById('adminPassword').value;
+            if (pass !== ADMIN_PASSWORD) { alert('Senha de administrador inválida.'); return; }
+            closeAdminModal();
+            openAdminDashboard();
+        }
+
+        function openAdminDashboard() {
+            const contas = JSON.parse(localStorage.getItem('contasCadastradas') || '[]');
+            const pedidos = JSON.parse(localStorage.getItem('pedidosHistorico') || '[]');
+
+            const produtoMap = {};
+            pedidos.forEach(p => {
+                (p.itens || []).forEach(item => {
+                    const nome = item.nome;
+                    const qty = parseInt(item.quantity) || 0;
+                    const val = parseFloat((item.subtotal || '0').replace(',', '.')) || 0;
+                    if (!produtoMap[nome]) produtoMap[nome] = { quantidade: 0, total: 0 };
+                    produtoMap[nome].quantidade += qty;
+                    produtoMap[nome].total += val;
+                });
             });
-            mensagem += `\n💰 *TOTAL: R$ ${total.toFixed(2)}*\n\n📍 *Endereço para entrega:*\nNome: \nEndereço: \nBairro: \n\n✅ *Aguardando confirmação!*`;
-            const numero = "5511976349686";
-            const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
-            cart = [];
-            cartCount = 0;
-            updateCartDisplay();
+
+            const produtosOrdenados = Object.entries(produtoMap).sort((a, b) => b[1].total - a[1].total);
+
+            const html = `<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🛠️ Painel Admin</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:Arial,sans-serif;background:#f4f6f8;color:#333;}
+  header{background:linear-gradient(135deg,#2c5530,#4a7c59);color:white;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;}
+  header h1{font-size:1.4rem;}
+  .badge{background:#ffd700;color:#2c5530;padding:0.3rem 0.8rem;border-radius:20px;font-weight:bold;font-size:0.85rem;}
+  .container{max-width:1200px;margin:0 auto;padding:1.5rem;}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:1.5rem;}
+  .stat-card{background:white;border-radius:12px;padding:1.2rem;box-shadow:0 2px 8px rgba(0,0,0,0.08);text-align:center;}
+  .stat-card .num{font-size:1.8rem;font-weight:bold;color:#2c5530;}
+  .stat-card .label{color:#777;font-size:0.85rem;margin-top:0.3rem;}
+  .section{background:white;border-radius:12px;padding:1.5rem;box-shadow:0 2px 8px rgba(0,0,0,0.08);margin-bottom:1.5rem;}
+  .section h2{color:#2c5530;margin-bottom:1rem;font-size:1.1rem;border-bottom:2px solid #e8f5e9;padding-bottom:0.5rem;}
+  .filters{display:flex;gap:0.8rem;flex-wrap:wrap;margin-bottom:1rem;}
+  .filters select,.filters input{padding:0.5rem 0.8rem;border:1px solid #ccc;border-radius:8px;font-size:0.9rem;}
+  .filters button{background:#2c5530;color:white;border:none;padding:0.5rem 1rem;border-radius:8px;cursor:pointer;}
+  table{width:100%;border-collapse:collapse;font-size:0.88rem;}
+  th{background:#2c5530;color:white;padding:0.6rem 0.8rem;text-align:left;}
+  td{padding:0.6rem 0.8rem;border-bottom:1px solid #eee;}
+  tr:hover td{background:#f9fffe;}
+  .tag{display:inline-block;background:#e8f5e9;color:#2c5530;padding:0.2rem 0.6rem;border-radius:12px;font-size:0.8rem;font-weight:bold;}
+  .tag-pix{background:#e3f2fd;color:#1565c0;}
+  .tag-cartao{background:#fce4ec;color:#c62828;}
+  .tag-dinheiro{background:#f3e5f5;color:#6a1b9a;}
+  .no-data{color:#999;text-align:center;padding:2rem;}
+  .bar-row{display:flex;align-items:center;gap:0.8rem;margin-bottom:0.5rem;}
+  .bar-row .nome{min-width:160px;font-size:0.88rem;}
+  .bar-wrap{flex:1;background:#eee;border-radius:8px;height:16px;overflow:hidden;}
+  .bar-fill{height:100%;background:linear-gradient(90deg,#2c5530,#4a7c59);border-radius:8px;}
+  .bar-row .val{min-width:110px;text-align:right;font-size:0.82rem;color:#555;}
+</style>
+</head>
+<body>
+<header>
+  <h1>🛠️ Painel Admin — Sua Marca</h1>
+  <span class="badge">Admin</span>
+</header>
+<div class="container">
+  <div class="stats" id="statsCards"></div>
+  <div class="section">
+    <h2>🏆 Produtos mais vendidos</h2>
+    <div id="produtosChart"></div>
+  </div>
+  <div class="section">
+    <h2>📦 Pedidos realizados</h2>
+    <div class="filters">
+      <input type="text" id="filtroPessoa" placeholder="🔍 Cliente..." oninput="renderPedidos()">
+      <select id="filtroProduto" onchange="renderPedidos()">
+        <option value="">🛍️ Todos os produtos</option>
+        ${produtosOrdenados.map(([nome]) => `<option value="${nome}">${nome}</option>`).join('')}
+      </select>
+      <select id="filtroPagamento" onchange="renderPedidos()">
+        <option value="">💳 Todos pagamentos</option>
+        <option value="Pix">Pix</option>
+        <option value="Cartão">Cartão</option>
+        <option value="Dinheiro">Dinheiro</option>
+      </select>
+      <button onclick="limparFiltros()">✕ Limpar</button>
+    </div>
+    <div id="tabelaPedidos"></div>
+  </div>
+  <div class="section">
+    <h2>👥 Clientes cadastrados</h2>
+    <div id="tabelaClientes"></div>
+  </div>
+</div>
+<script>
+  const pedidos=${JSON.stringify(pedidos)};
+  const contas=${JSON.stringify(contas)};
+  const produtosOrdenados=${JSON.stringify(produtosOrdenados)};
+
+  function renderStats(){
+    const totalVendas=pedidos.reduce((s,p)=>s+parseFloat((p.total||'0').replace(',','.')),0);
+    const totalItens=pedidos.reduce((s,p)=>s+(p.itens||[]).reduce((a,i)=>a+(parseInt(i.quantity)||0),0),0);
+    document.getElementById('statsCards').innerHTML=\`
+      <div class="stat-card"><div class="num">\${pedidos.length}</div><div class="label">Pedidos</div></div>
+      <div class="stat-card"><div class="num">R$ \${totalVendas.toFixed(2).replace('.',',')}</div><div class="label">Total vendido</div></div>
+      <div class="stat-card"><div class="num">\${totalItens}</div><div class="label">Itens vendidos</div></div>
+      <div class="stat-card"><div class="num">\${contas.length}</div><div class="label">Clientes</div></div>
+    \`;
+  }
+
+  function renderProdutos(){
+    if(produtosOrdenados.length===0){document.getElementById('produtosChart').innerHTML='<p class="no-data">Nenhuma venda registrada.</p>';return;}
+    const maxVal=produtosOrdenados[0][1].total;
+    document.getElementById('produtosChart').innerHTML=produtosOrdenados.map(([nome,d])=>\`
+      <div class="bar-row">
+        <div class="nome">\${nome}</div>
+        <div class="bar-wrap"><div class="bar-fill" style="width:\${maxVal>0?(d.total/maxVal*100).toFixed(1):0}%"></div></div>
+        <div class="val">\${d.quantidade}x · R$ \${d.total.toFixed(2).replace('.',',')}</div>
+      </div>
+    \`).join('');
+  }
+
+  function renderPedidos(){
+    const fp=document.getElementById('filtroPessoa').value.toLowerCase();
+    const fprod=document.getElementById('filtroProduto').value;
+    const fpag=document.getElementById('filtroPagamento').value;
+    let lista=[...pedidos].reverse();
+    if(fp) lista=lista.filter(p=>p.nome.toLowerCase().includes(fp)||(p.telefone||'').includes(fp));
+    if(fprod) lista=lista.filter(p=>(p.itens||[]).some(i=>i.nome===fprod));
+    if(fpag) lista=lista.filter(p=>p.pagamento===fpag);
+    if(lista.length===0){document.getElementById('tabelaPedidos').innerHTML='<p class="no-data">Nenhum pedido encontrado.</p>';return;}
+    const tc={'Pix':'tag-pix','Cartão':'tag-cartao','Dinheiro':'tag-dinheiro'};
+    document.getElementById('tabelaPedidos').innerHTML=\`
+      <table>
+        <thead><tr><th>Cliente</th><th>Telefone</th><th>Endereço</th><th>Itens</th><th>Pagamento</th><th>Total</th><th>Data</th></tr></thead>
+        <tbody>\${lista.map(p=>\`
+          <tr>
+            <td><strong>\${p.nome}</strong></td>
+            <td>\${p.telefone}</td>
+            <td>\${p.endereco}, \${p.bairro} - \${p.cidade}</td>
+            <td>\${(p.itens||[]).map(i=>\`\${i.nome} x\${i.quantity}\`).join('<br>')}</td>
+            <td><span class="tag \${tc[p.pagamento]||'tag'}">\${p.pagamento}\${p.troco?' (troco R$'+p.troco+')':''}</span></td>
+            <td><strong>R$ \${p.total}</strong></td>
+            <td>\${p.criadoEm?new Date(p.criadoEm).toLocaleString('pt-BR'):'-'}</td>
+          </tr>
+        \`).join('')}</tbody>
+      </table>
+    \`;
+  }
+
+  function renderClientes(){
+    if(contas.length===0){document.getElementById('tabelaClientes').innerHTML='<p class="no-data">Nenhum cliente cadastrado.</p>';return;}
+    document.getElementById('tabelaClientes').innerHTML=\`
+      <table>
+        <thead><tr><th>Nome</th><th>E-mail</th><th>Telefone</th><th>Endereço</th><th>Cidade</th><th>CEP</th></tr></thead>
+        <tbody>\${contas.map(c=>\`
+          <tr>
+            <td><strong>\${c.nome}</strong></td>
+            <td>\${c.email}</td>
+            <td>\${c.telefone}</td>
+            <td>\${c.endereco}, \${c.bairro}</td>
+            <td>\${c.cidade}</td>
+            <td>\${c.cep}</td>
+          </tr>
+        \`).join('')}</tbody>
+      </table>
+    \`;
+  }
+
+  function limparFiltros(){
+    document.getElementById('filtroPessoa').value='';
+    document.getElementById('filtroProduto').value='';
+    document.getElementById('filtroPagamento').value='';
+    renderPedidos();
+  }
+
+  renderStats();renderProdutos();renderPedidos();renderClientes();
+<\/script>
+</body>
+</html>`;
+
+            const win = window.open('', '_blank', 'width=1200,height=800,scrollbars=yes,resizable=yes');
+            if (!win) { alert('⚠️ Pop-up bloqueado! Permita pop-ups para este site e tente novamente.'); return; }
+            win.document.write(html);
+            win.document.close();
+        }
+
+        function openCheckout() {
+            if (cart.length === 0) { alert('Seu carrinho está vazio!'); return; }
             closeCart();
-            window.open(url, '_blank');
-            alert('✅ Pedido enviado pro WhatsApp! Acompanhe lá!');
+            document.getElementById('checkoutModal').style.display = 'block';
+        }
+
+        function closeCheckout() { document.getElementById('checkoutModal').style.display = 'none'; }
+
+        function toggleTrocoField() {
+            const pagamento = document.getElementById('pagamento').value;
+            document.getElementById('troco').style.display = pagamento === 'Dinheiro' ? 'block' : 'none';
+        }
+
+        function submitOrder(event) {
+            event.preventDefault();
+            const nome = document.getElementById('nome').value.trim();
+            const telefone = document.getElementById('telefone').value.trim();
+            const endereco = document.getElementById('endereco').value.trim();
+            const bairro = document.getElementById('bairro').value.trim();
+            const cidade = document.getElementById('cidade').value.trim();
+            const cep = document.getElementById('cep').value.trim();
+            const pagamento = document.getElementById('pagamento').value;
+            const troco = document.getElementById('troco').value.trim();
+            if (!nome || !telefone || !endereco || !bairro || !cidade || !cep || !pagamento) { alert('Preencha todos os campos!'); return; }
+            if (pagamento === 'Dinheiro' && !troco) { alert('Informe o troco.'); return; }
+            let total = 0;
+            let itensMensagem = '';
+            cart.forEach(item => {
+                const subtotal = item.price * item.quantity;
+                total += subtotal;
+                itensMensagem += `• ${item.name} x${item.quantity} - R$ ${subtotal.toFixed(2).replace('.', ',')}\n`;
+            });
+            const pedido = {
+                nome, telefone, endereco, bairro, cidade, cep, pagamento,
+                troco: pagamento === 'Dinheiro' ? troco : '',
+                total: total.toFixed(2).replace('.', ','),
+                itens: cart.map(item => ({ nome: item.name, quantity: item.quantity, subtotal: (item.price * item.quantity).toFixed(2).replace('.', ',') })),
+                criadoEm: new Date().toISOString()
+            };
+            const historico = JSON.parse(localStorage.getItem('pedidosHistorico') || '[]');
+            historico.push(pedido);
+            localStorage.setItem('pedidosHistorico', JSON.stringify(historico));
+            let mensagem = `🛒 *NOVO PEDIDO - SUA MARCA*\n\n👤 *Cliente:* ${nome}\n📞 *Telefone:* ${telefone}\n\n📍 *Entrega:*\n${endereco}, ${bairro} - ${cidade}\nCEP: ${cep}\n\n📦 *Itens:*\n${itensMensagem}\n💳 *Pagamento:* ${pagamento}`;
+            if (pagamento === 'Dinheiro') mensagem += ` (Troco: R$ ${troco})`;
+            mensagem += `\n💰 *Total:* R$ ${total.toFixed(2).replace('.', ',')}\n\n✅ Pedido enviado pelo site.`;
+            window.open(`https://wa.me/5511976349686?text=${encodeURIComponent(mensagem)}`, '_blank');
+            cart = []; cartCount = 0; updateCartDisplay();
+            closeCheckout();
+            document.getElementById('checkoutForm').reset();
+            document.getElementById('troco').style.display = 'none';
+            alert('Pedido encaminhado para o WhatsApp da loja.');
         }
 
         window.onclick = function(event) {
-            const modal = document.getElementById('cartModal');
-            if (event.target === modal) closeCart();
+            if (event.target === document.getElementById('cartModal')) closeCart();
+            if (event.target === document.getElementById('checkoutModal')) closeCheckout();
+            if (event.target === document.getElementById('accountModal')) closeAccountModal();
+            if (event.target === document.getElementById('adminModal')) closeAdminModal();
         }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const saved = JSON.parse(localStorage.getItem('clienteConta') || 'null');
+            if (saved) {
+                currentUser = saved;
+                autofillCheckoutFromAccount();
+                if (saved.email === ADMIN_EMAIL) showAdminButton();
+            }
+        });
 
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
